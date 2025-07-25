@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Result</title>
+</head>
+<body style="background-color: white; color: black; font-family: Arial, sans-serif;">
+    <h2>Search Term</h2>
+
+    <p style="font-size: 18px; border: 1px solid #ccc; padding: 10px;">
+        You searched for: <strong>{{ term | e }}</strong>
+    </p>
+
+    <form action="{{ url_for('home') }}">
+        <button type="submit">Return Home</button>
+    </form>
+</body>
+</html>

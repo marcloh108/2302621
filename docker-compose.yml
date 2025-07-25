@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  web:
+    build: ./flaskapp
+    ports:
+      - "80:80"
+    volumes:
+      - ./flaskapp:/app
+
+  git:
+    image: gitea/gitea:latest
+    container_name: gitea
+    environment:
+      - USER_UID=1000
+      - USER_GID=1000
+      - GITEA__server__DOMAIN=localhost
+      - GITEA__server__ROOT_URL=http://localhost:3000/
+      - GITEA__mailer__ENABLED=false
+      - GITEA__security__INSTALL_LOCK=true
+      - GITEA__security__SECRET_KEY=supersecretkey
+      - GITEA__database__DB_TYPE=sqlite3
+      - GITEA__database__PATH=/data/gitea/gitea.db
+      - GITEA__user__DEFAULT_EMAIL=2302621@sit.singaporetech.edu.sg
+      - GITEA__user__DEFAULT_USERNAME=LOH-KAI-WEI-MARC
+    ports:
+      - "3000:3000"
+      - "2222:22"
+    volumes:
+      - ./gitea:/data
